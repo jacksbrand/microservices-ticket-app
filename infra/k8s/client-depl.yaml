@@ -1,33 +1,34 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: auth-mongo-depl
+  name: client-depl
 spec:
+  replicas: 1
   selector:
     matchLabels:
-      app: auth-mongo
+      app: client
   template:
     metadata:
       labels:
-        app: auth-mongo
+        app: client
     spec:
       containers:
-        - name: auth-mongo-depl
-          image: mongo
+        - name: client
+          image: jackswebbrand/client
           resources:
             limits:
-              memory: '128Mi'
+              memory: '500Mi'
               cpu: '1000m'
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: auth-mongo-srv
+  name: client-srv
 spec:
   selector:
-    app: auth-mongo
+    app: client
   ports:
-    - name: db
+    - port: 3000
+      targetPort: 3000
+      name: client
       protocol: TCP
-      port: 27017
-      targetPort: 27017

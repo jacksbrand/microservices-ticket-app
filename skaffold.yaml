@@ -16,3 +16,13 @@ build:
         manual:
           - src: 'src/**/*.ts'
             dest: .
+    - image: jackswebbrand/client
+      context: client
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: '**/*.js'
+            dest: .
+          - src: '**/*.jsx'
+            dest: .
