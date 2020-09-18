@@ -6,12 +6,14 @@ minikube ingress url for development purposes: _ticketing.dev_ (update /etc/host
 
 **Services implemented:**
 
-1. Auth service:
+1. Auth:
 
    - Signup/in/out/currentuser
    - Error handling
    - Middleware for services other requiring Authorisation (may destructure out)
    - MongoDB/Mongoose (currently not persistent)
+
+</hr>
 
 **Working on next:**
 
