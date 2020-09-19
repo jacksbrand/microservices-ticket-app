@@ -25,3 +25,4 @@ minikube ingress url for development purposes: _ticketing.dev_ (update /etc/host
 
 1. Automated testing - globally
 2. Front end React application - on an 'as necessary' basis with respect to each service
+3. Tickets service
