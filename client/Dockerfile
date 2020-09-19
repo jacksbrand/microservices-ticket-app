@@ -3,7 +3,9 @@ FROM node:alpine
 WORKDIR /app
 COPY package.json .
 RUN npm install
-RUN npx next telemetry disable
+
 COPY . .
+
+RUN npx next telemetry disable
 
 CMD ["npm", "run", "dev"]

@@ -11,11 +11,17 @@ Continuing microservices work; app to buy and sell tickets between thrid party /
 
    - Four different routes (signup/in/out/currentuser)
    - Error handling
-   - Middleware for services other requiring Authorisation (may destructure out)
+   - Middleware for services other requiring Authorisation (destructured out to common module)
    - MongoDB/Mongoose (currently not persistent)
    - Automated testing of each route
 
-2. Client:
+2. Tickets:
+
+   - Create/read/update/destroy tickets service with mongodb
+   - Error handling and middleware implemented - developed using a testing first approach
+   - Automated testing for expected scenarios
+
+3. Client:
 
    - Next.js / React serverside rendering, in keeping with microservices theme
    - Simple route / error handling for all auth routes
@@ -25,5 +31,4 @@ Continuing microservices work; app to buy and sell tickets between thrid party /
 **Working on next:**
 
 1. Automated testing - globally
-2. Front end React application - on an 'as necessary' basis with respect to each service
-3. Tickets service
+2. NATS Streaming Service integration and deployment

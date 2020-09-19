@@ -1,14 +1,6 @@
 import request from 'supertest';
 import app from '../app';
 
-declare global {
-  namespace NodeJS {
-    interface Global {
-      autoSignUp(): Promise<string[]>;
-    }
-  }
-}
-
 export const autoSignUp = async () => {
   const email = 'test@test.com';
   const password = 'apple';
