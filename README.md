@@ -3,7 +3,7 @@
 Continuing microservices work; app to buy and sell tickets between thrid party / private sellers
 
 > minikube ingress url for development purposes: _ticketing.dev_ (update /etc/hosts to point to the ip of your minikube, if using).
-> the 'common' module is npm published to @jackswebbrand-firetix/common
+> The 'common' module is npm published to @jackswebbrand-firetix/common
 
 **Services implemented:**
 
