@@ -17,7 +17,7 @@ minikube ingress url for development purposes: _ticketing.dev_ (update /etc/host
 2. Client:
 
    - Next.js / React serverside rendering, in keeping with microservices theme
-   - Simple route / error handling for signup using custom hooks
+   - Simple route / error handling for all auth routes
 
 ---
 
