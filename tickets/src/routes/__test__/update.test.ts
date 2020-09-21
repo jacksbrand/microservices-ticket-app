@@ -3,6 +3,7 @@ import app from '../../app';
 import mongoose from 'mongoose';
 import { autoSignUp } from '../../test/auto-signup';
 import { Ticket } from '../../models/ticket';
+import { natsWrapper } from '../../nats-wrapper';
 
 it('Returns a 404 if the provided id does not exist', async () => {
   const id = new mongoose.Types.ObjectId().toHexString();
@@ -105,4 +106,28 @@ it('Updates the ticket, provided valid inputs', async () => {
 
   expect(ticket.body.title).toEqual('The Faces');
   expect(ticket.body.price).toEqual(99.99);
+});
+
+it('Publishes an Event', async () => {
+  const cookie = autoSignUp();
+
+  const res = await request(app)
+    .post('/api/tickets')
+    .set('Cookie', cookie)
+    .send({
+      title: 'Electric Light Orchestra',
+      price: 99.95,
+    })
+    .expect(201);
+
+  await request(app)
+    .put(`/api/tickets/${res.body.id}`)
+    .set('Cookie', cookie)
+    .send({
+      title: 'The Faces',
+      price: 99.99,
+    })
+    .expect(200);
+
+  expect(natsWrapper.sc.publish).toHaveBeenCalled();
 });

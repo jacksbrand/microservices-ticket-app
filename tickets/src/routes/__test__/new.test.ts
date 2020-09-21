@@ -2,6 +2,8 @@ import request from 'supertest';
 import app from '../../app';
 import { autoSignUp } from '../../test/auto-signup';
 import { Ticket } from '../../models/ticket';
+import { JsonWebTokenError } from 'jsonwebtoken';
+import { natsWrapper } from '../../nats-wrapper';
 
 it('Properly handles the /api/tickets route', async () => {
   const res = await request(app).post('/api/tickets').send({});
@@ -80,4 +82,20 @@ it('Creates a ticket when provided valid inputs', async () => {
   expect(ticketsAfter.length).toEqual(1);
   expect(ticketsAfter[0].title).toEqual(title);
   expect(ticketsAfter[0].price).toEqual(price);
+});
+
+it('Publishes an event', async () => {
+  const title = 'Whitesnake Revival';
+  const price = 100;
+
+  await request(app)
+    .post('/api/tickets')
+    .set('Cookie', autoSignUp())
+    .send({
+      title,
+      price,
+    })
+    .expect(201);
+
+  expect(natsWrapper.sc.publish).toHaveBeenCalled();
 });

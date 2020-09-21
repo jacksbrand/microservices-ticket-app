@@ -7,6 +7,9 @@ import {
   NotAuthorizedError,
 } from '@jackswebbrand-firetix/common';
 import { Ticket } from '../models/ticket';
+import { TicketUpdatedPublisher } from '../events/publishers/ticket-updated-publisher';
+import { natsWrapper } from '../nats-wrapper';
+import { addSyntheticTrailingComment } from 'typescript';
 
 const router = express.Router();
 
@@ -36,6 +39,13 @@ router.put(
       price: req.body.price,
     });
     await ticket.save();
+
+    new TicketUpdatedPublisher(natsWrapper.sc).publish({
+      id: ticket.id,
+      title: ticket.title,
+      price: ticket.price,
+      userId: ticket.userId,
+    });
 
     res.send(ticket);
   }

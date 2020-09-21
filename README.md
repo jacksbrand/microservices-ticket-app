@@ -21,7 +21,11 @@ Continuing microservices work; app to buy and sell tickets between thrid party /
    - Error handling and middleware implemented - developed using a testing first approach
    - Automated testing for expected scenarios
 
-3. Client:
+3. Orders:
+
+   - Create/read/delete with mongodb
+
+4. Client:
 
    - Next.js / React serverside rendering, in keeping with microservices theme
    - Simple route / error handling for all auth routes
