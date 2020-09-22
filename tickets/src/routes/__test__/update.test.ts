@@ -131,3 +131,29 @@ it('Publishes an Event', async () => {
 
   expect(natsWrapper.sc.publish).toHaveBeenCalled();
 });
+
+it('rejects updates if the ticket is reserved', async () => {
+  const cookie = autoSignUp();
+
+  const res = await request(app)
+    .post('/api/tickets')
+    .set('Cookie', cookie)
+    .send({
+      title: 'Electric Light Orchestra',
+      price: 99.95,
+    })
+    .expect(201);
+
+  const ticket = await Ticket.findById(res.body.id);
+  ticket?.set({ orderId: mongoose.Types.ObjectId().toHexString() });
+  await ticket?.save();
+
+  await request(app)
+    .put(`/api/tickets/${res.body.id}`)
+    .set('Cookie', cookie)
+    .send({
+      title: 'The Faces',
+      price: 99.99,
+    })
+    .expect(400);
+});

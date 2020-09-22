@@ -24,8 +24,16 @@ Continuing microservices work; app to buy and sell tickets between thrid party /
 3. Orders:
 
    - Create/read/delete with mongodb
+   - Establish order conditions (including if the order has been cancelled)
+   - Has it's own copy of the tickets database.
+   - Automated testing
 
-4. Client:
+4. NATS:
+
+   - Handle incoming and outgoing events in realtime; keeping all other services informed of application state.
+   - Safety features to protect against information loss due to downtime.
+
+5. Client:
 
    - Next.js / React serverside rendering, in keeping with microservices theme
    - Simple route / error handling for all auth routes
@@ -35,4 +43,4 @@ Continuing microservices work; app to buy and sell tickets between thrid party /
 **Working on next:**
 
 1. Automated testing - globally
-2. NATS Streaming Service integration and deployment
+2. Expiration service

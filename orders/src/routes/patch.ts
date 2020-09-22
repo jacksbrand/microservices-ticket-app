@@ -2,13 +2,16 @@ import express, { Request, Response } from 'express';
 import {
   NotAuthorizedError,
   NotFoundError,
+  OrderStatus,
   requireAuth,
 } from '@jackswebbrand-firetix/common';
 import { Order } from '../models/order';
+import { natsWrapper } from '../nats-wrapper';
+import { OrderCancelledPublisher } from '../events/publishers/order-cancelled-publisher';
 
 const router = express.Router();
 
-router.get(
+router.patch(
   '/api/orders/:orderId',
   requireAuth,
   async (req: Request, res: Response) => {
@@ -18,12 +21,23 @@ router.get(
       throw new NotFoundError();
     }
 
-    if (order.userId !== req.currentUser!.id) {
+    if (req.currentUser?.id !== order.userId) {
       throw new NotAuthorizedError();
     }
+
+    order.status = OrderStatus.Canceled;
+    await order.save();
+
+    new OrderCancelledPublisher(natsWrapper.sc).publish({
+      id: order.id,
+      version: order.ticket.version,
+      ticket: {
+        id: order.ticket.id,
+      },
+    });
 
     res.send(order);
   }
 );
 
-export { router as showOrderRouter };
+export { router as patchOrderRouter };
