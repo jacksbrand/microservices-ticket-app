@@ -16,7 +16,7 @@ class NatsWrapper {
 
     return new Promise<void>((resolve, reject) => {
       this._sc?.on('connect', () => {
-        console.log('---ORDERS--- Connected to NATS');
+        console.log('---EXPIRATION--- Connected to NATS');
         resolve();
       });
       this._sc?.on('error', (err) => {

@@ -25,7 +25,7 @@ router.patch(
       throw new NotAuthorizedError();
     }
 
-    order.status = OrderStatus.Canceled;
+    order.status = OrderStatus.Cancelled;
     await order.save();
 
     new OrderCancelledPublisher(natsWrapper.sc).publish({

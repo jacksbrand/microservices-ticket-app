@@ -42,13 +42,13 @@ const start = async () => {
       useUnifiedTopology: true,
       useCreateIndex: true,
     });
-    console.log('---TICKETS--- Connected to MongoDB');
+    console.log('---ORDERS--- Connected to MongoDB');
   } catch (err) {
     console.error(err);
   }
 
   app.listen(3000, () => {
-    console.log('---TICKETS--- listening on 3000');
+    console.log('---ORDERS--- listening on 3000');
   });
 };
 

@@ -38,7 +38,7 @@ it('changes the status code of an order, on request from an authorised user', as
   const patchedOrder = await Order.findById(order);
 
   // Check that the status code is cancelled
-  expect(patchedOrder?.status).toEqual(OrderStatus.Canceled);
+  expect(patchedOrder?.status).toEqual(OrderStatus.Cancelled);
 });
 
 it('emits an order cancelled event', async () => {
