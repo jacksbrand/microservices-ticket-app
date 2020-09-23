@@ -48,4 +48,4 @@ Continuing microservices work; app to buy and sell tickets between thrid party /
 **Working on next:**
 
 1. Automated testing - globally
-2. Expiration service
+2. Payment service
