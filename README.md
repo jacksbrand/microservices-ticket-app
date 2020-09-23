@@ -28,12 +28,17 @@ Continuing microservices work; app to buy and sell tickets between thrid party /
    - Has it's own copy of the tickets database.
    - Automated testing
 
-4. NATS:
+4. Expiration:
+
+   - Ticket expiration designed to time out orders that are not fullfiled, or otherwise left incomplete.
+   - Using Bull and Redis to manage 'expiration:complete' events. Final delay will be set to 10 minutes.
+
+5. NATS:
 
    - Handle incoming and outgoing events in realtime; keeping all other services informed of application state.
    - Safety features to protect against information loss due to downtime.
 
-5. Client:
+6. Client:
 
    - Next.js / React serverside rendering, in keeping with microservices theme
    - Simple route / error handling for all auth routes

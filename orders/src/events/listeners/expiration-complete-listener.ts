@@ -22,6 +22,11 @@ export class ExpirationCompleteListener extends Listener<
       throw new Error('Order not found');
     }
 
+    if (order.status === OrderStatus.Complete) {
+      console.log('Cannot cancel an order which has already been paid for');
+      return msg.ack();
+    }
+
     order.set({
       status: OrderStatus.Cancelled,
     });

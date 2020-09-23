@@ -17,6 +17,7 @@ const setup = async () => {
     price: 23,
     id: mongoose.Types.ObjectId().toHexString(),
   });
+  await ticket.save();
 
   const order = Order.build({
     userId: '123',
