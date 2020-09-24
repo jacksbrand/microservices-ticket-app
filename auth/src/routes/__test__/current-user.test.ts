@@ -9,7 +9,7 @@ it('responds with correct details regarding the currently logged in user', async
     .get('/api/users/currentuser')
     .set('Cookie', cookie)
     .send()
-    .expect(400);
+    .expect(200);
 
   expect(res.body.currentUser.email).toEqual('test@test.com');
   expect(res.body.currentUser.id).toBeDefined;
