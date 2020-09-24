@@ -1,10 +1,8 @@
 import app from './app';
 import mongoose from 'mongoose';
 import { natsWrapper } from './nats-wrapper';
-import { TicketCreatedListener } from './events/listeners/ticket-created-listener';
-import { TicketUpdatedListener } from './events/listeners/ticket-updated-listener';
-import { ExpirationCompleteListener } from './events/listeners/expiration-complete-listener';
-import { PaymentCreatedListener } from './events/listeners/payment-created-listener';
+import { OrderCreatedListener } from './events/listeners/order-created-listener';
+import { OrderCancelledListener } from './events/listeners/order-cancelled-listener';
 
 const start = async () => {
   if (!process.env.JWT_KEY) {
@@ -36,23 +34,21 @@ const start = async () => {
     process.on('SIGINT', () => natsWrapper.sc.close());
     process.on('SIGTERM', () => natsWrapper.sc.close());
 
-    new TicketCreatedListener(natsWrapper.sc).listen();
-    new TicketUpdatedListener(natsWrapper.sc).listen();
-    new ExpirationCompleteListener(natsWrapper.sc).listen();
-    new PaymentCreatedListener(natsWrapper.sc).listen();
+    new OrderCreatedListener(natsWrapper.sc).listen();
+    new OrderCancelledListener(natsWrapper.sc).listen();
 
     await mongoose.connect(process.env.MONGO_URI, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
       useCreateIndex: true,
     });
-    console.log('---ORDERS--- Connected to MongoDB');
+    console.log('---PAYMENTS--- Connected to MongoDB');
   } catch (err) {
     console.error(err);
   }
 
   app.listen(3000, () => {
-    console.log('---ORDERS--- listening on 3000');
+    console.log('---PAYMENTS--- listening on 3000');
   });
 };
 
