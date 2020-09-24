@@ -15,10 +15,10 @@ spec:
       containers:
         - name: client
           image: jackswebbrand/client
-          resources:
-            limits:
-              memory: '512Mi'
-              cpu: '500m'
+          # resources:
+          #   limits:
+          #     memory: '512Mi'
+          #     cpu: '500m'
 ---
 apiVersion: v1
 kind: Service
