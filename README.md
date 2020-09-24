@@ -45,8 +45,8 @@ Continuing microservices work; app to buy and sell tickets between thrid party /
 
 7. Client:
 
-   - Next.js / React serverside rendering, in keeping with microservices theme
-   - Simple route / error handling for all auth routes
+   - Next.js / React serverside rendering, in keeping with microservices theme.
+   - Simple in design and functionality - main purpose of the client is to allow easy interaction / demonstration of the backend services listed above.
 
 ---
 
