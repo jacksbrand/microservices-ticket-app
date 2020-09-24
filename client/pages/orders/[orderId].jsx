@@ -40,6 +40,7 @@ const OrderShow = ({ order, currentUser }) => {
         If you do not pay before the timer expires then the ticket will become
         available for anyone to purchase once more.
       </p>
+      <p>T E S T I N G... You will not be charged under any circumstances</p>
       <StripeCheckout
         token={({ id }) => doRequest({ token: id })}
         stripeKey='pk_test_51HUbNPCh4Uw4gYgzxKrMD8hJQjOYDVVg5Qjgf4xNWpfgnWajhCFg2GIWiMWMtnuX20bmS1EZ2rvpnrh7odPiKnCc00C5xSpHme'
