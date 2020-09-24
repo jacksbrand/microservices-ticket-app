@@ -6,7 +6,7 @@ const buildClient = ({
   if (typeof window === 'undefined') {
     //Server
     return axios.create({
-      baseURL: 'http://ingress-nginx-controller.ingress-nginx.svc.cluster.local',
+      baseURL: 'http://www.firetix.xyz',
       // baseURL: 'http://ingress-nginx-controller-admission.kube-system.svc.cluster.local',
       headers: req.headers
     })
