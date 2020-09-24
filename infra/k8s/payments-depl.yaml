@@ -36,10 +36,10 @@ spec:
               valueFrom:
                 fieldRef:
                   fieldPath: metadata.name
-          resources:
-            limits:
-              memory: '512Mi'
-              cpu: '500m'
+          # resources:
+          #   limits:
+          #     memory: '512Mi'
+          #     cpu: '500m'
 ---
 apiVersion: v1
 kind: Service
