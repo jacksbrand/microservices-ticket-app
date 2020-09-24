@@ -62,6 +62,7 @@ it('returns 400 when purchasing a cancelled order', async () => {
     .expect(400);
 });
 
+// COMMENTED OUT UNTIL SUCH TIME AS I CAN FIX IT - DO NOT DELETE
 // it('returns a 204 with valid inputs', async () => {
 //   const userId = mongoose.Types.ObjectId().toHexString();
 
