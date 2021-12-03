@@ -1,4 +1,4 @@
-# 🔥 firetix 🎫
+# 🔥 Microservice testing by making a ticket app (NATS) 🎫
 
 Continuing microservices work; app to buy and sell tickets between thrid party / private sellers
 
