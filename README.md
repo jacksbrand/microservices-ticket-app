@@ -1,6 +1,4 @@
-# 🔥 Microservice testing by making a ticket app (NATS) 🎫
-
-Continuing microservices work; app to buy and sell tickets between thrid party / private sellers
+# Testing NATS by throwing tickets around
 
 > minikube ingress url for development purposes: _ticketing.dev_ (update /etc/hosts to point to the ip of your minikube, if using).
 > The 'common' module is npm published to @jackswebbrand-firetix/common
